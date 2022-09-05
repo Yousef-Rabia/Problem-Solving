@@ -1,27 +1,38 @@
-#include<iostream>
-#include <cctype>
+#include <iostream>
 using namespace std;
+
+#include <algorithm>
+
 int main()
 {
-	int  n;
-	long  x,temp=0;
-	long long count = 0;
-	cin >> n;
-	while (n+1)
-	{
-		cin >> x;
-		if (x % 2 == 0)
-			count += x;
-		else
-			if (temp == 0)
-				temp = x;
-			else
-			{
-				count += x + temp;
-				temp = 0;
-			}
-		n--;
-	}
-	cout << count;
-	return 0;
+    int n = 0;
+    long long j = 0, x, sum = 0;
+    cin >> n;
+    
+    int arr[100000];
+    for (size_t i = 0; i < n; i++)
+    {
+        cin >> x;
+        if (x % 2 == 0)
+            sum += x;
+        else
+        {
+            arr[j] = x;
+            j++;
+        }
+    
+    }
+    sort(arr, arr+j);
+    if (j % 2 == 0)
+    {
+        for (size_t i = 0; i < j; i++)
+            sum += arr[i];
+    }
+    else
+    {
+        for (size_t i = j-1; i >0; i--)
+            sum += arr[i];
+    }
+    cout << sum;
+    return 0;
 }
